@@ -1,0 +1,26 @@
+---
+title: "Pract3"
+author: "Jacqueline Wong"
+date: "22/05/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readr)
+mooc <-read_csv(file = "/Users/Jael/Desktop/HarvardMITMOOC.csv")
+head(mooc)
+```
+Summary registered, viewed, explored, and certified by courses
+```{r}
+library(dplyr)
+mooc %>% group_by(course_id) %>% summarise(Total.Registered = sum(registered), Total.Viewed = sum(viewed), Total.Explored = sum (explored), Total.Certified = sum (certified)) 
+```
+Group by education level
+```{r}
+mooc %>% group_by(course_id) %>% group_by(LoE_DI) %>% summarise(Total.Registered = sum(registered), Total.Viewed = sum(viewed), Total.Explored = sum (explored), Total.Certified = sum (certified)) 
+```
+
