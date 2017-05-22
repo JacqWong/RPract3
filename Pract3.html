@@ -156,6 +156,49 @@ mooc &lt;-read_csv(file = &quot;/Users/Jael/Desktop/HarvardMITMOOC.csv&quot;)</c
 ## #   start_time_DI &lt;date&gt;, last_event_DI &lt;date&gt;, nevents &lt;int&gt;,
 ## #   ndays_act &lt;int&gt;, nplay_video &lt;int&gt;, nchapters &lt;dbl&gt;,
 ## #   nforum_posts &lt;int&gt;, roles &lt;chr&gt;, incomplete_flag &lt;int&gt;</code></pre>
+<p>Summary registered, viewed, explored, and certified by courses</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>mooc %&gt;% group_by(course_id) %&gt;% summarise(Total.Registered = sum(registered), Total.Viewed = sum(viewed), Total.Explored = sum (explored), Total.Certified = sum (certified)) </code></pre>
+<pre><code>## # A tibble: 16 &lt;U+00D7&gt; 5
+##                      course_id Total.Registered Total.Viewed
+##                          &lt;chr&gt;            &lt;int&gt;        &lt;int&gt;
+## 1   HarvardX/CB22x/2013_Spring            30002        16314
+## 2          HarvardX/CS50x/2012           169621       106086
+## 3   HarvardX/ER22x/2013_Spring            57406        32161
+## 4    HarvardX/PH207x/2012_Fall            41592        24279
+## 5  HarvardX/PH278x/2013_Spring            39602        15016
+## 6      MITx/14.73x/2013_Spring            27870        16388
+## 7       MITx/2.01x/2013_Spring             5665         3866
+## 8        MITx/3.091x/2012_Fall            14215         7013
+## 9      MITx/3.091x/2013_Spring             6139         5899
+## 10       MITx/6.002x/2012_Fall            40811        26019
+## 11     MITx/6.002x/2013_Spring            22235        10685
+## 12        MITx/6.00x/2012_Fall            66731        41421
+## 13      MITx/6.00x/2013_Spring            57715        54532
+## 14      MITx/7.00x/2013_Spring            21009        13082
+## 15      MITx/8.02x/2013_Spring            31048        20785
+## 16     MITx/8.MReV/2013_Summer             9477         6716
+## # ... with 2 more variables: Total.Explored &lt;int&gt;, Total.Certified &lt;int&gt;</code></pre>
+<p>Group by education level</p>
+<pre class="r"><code>mooc %&gt;% group_by(course_id) %&gt;% group_by(LoE_DI) %&gt;% summarise(Total.Registered = sum(registered), Total.Viewed = sum(viewed), Total.Explored = sum (explored), Total.Certified = sum (certified)) </code></pre>
+<pre><code>## # A tibble: 6 &lt;U+00D7&gt; 5
+##                LoE_DI Total.Registered Total.Viewed Total.Explored
+##                 &lt;chr&gt;            &lt;int&gt;        &lt;int&gt;          &lt;int&gt;
+## 1          Bachelor's           219768       131731          11568
+## 2           Doctorate            13387         8493            993
+## 3 Less than Secondary            14092         9924            928
+## 4            Master's           118189        72410           8450
+## 5           Secondary           169694       107456           9283
+## 6                &lt;NA&gt;           106008        70248           8464
+## # ... with 1 more variables: Total.Certified &lt;int&gt;</code></pre>
 
 
 

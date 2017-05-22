@@ -24,3 +24,13 @@ Group by education level
 mooc %>% group_by(course_id) %>% group_by(LoE_DI) %>% summarise(Total.Registered = sum(registered), Total.Viewed = sum(viewed), Total.Explored = sum (explored), Total.Certified = sum (certified)) 
 ```
 
+Plot of number of certified participants by Level of Education
+```{r}
+library(ggplot2)
+ggplot(mooc [1:16], aes (x= LoE_DI, y= certified)) + geom_bar(stat = "identity") 
+```
+
+Plot of number of certified by Level of Education per course
+```{r}
+ggplot(mooc [1:16], aes (x= course_id, y = certified, fill = LoE_DI)) + geom_bar(stat = "identity")
+```
